@@ -160,7 +160,7 @@ const PostApplication = () => {
             </div>
             <div>
               <label>Resume</label>
-              <input type="file" onChange={resumeHandler} />
+              <input type="file" onChange={resumeHandler} accept=".pdf"/>
               <p className="resume-info">
                 If you do not upload a resume, the resume from your profile will
                 be used.
