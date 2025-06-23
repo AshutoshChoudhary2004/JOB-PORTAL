@@ -233,6 +233,7 @@ const Register = () => {
                       <input
                         type="file"
                         onChange={resumeHandler}
+                        accept = ".pdf"
                         style={{ border: "none" }}
                       />
                     </div>
