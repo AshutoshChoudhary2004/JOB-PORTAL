@@ -31,8 +31,8 @@ A full-featured **Job Portal** built with the **MERN stack** (MongoDB, Express, 
 
 1. Clone this repository to your local machine
    
-        git clone https://github.com/your-username/job-portal.git
-        (cd job-portal)
+        git clone https://github.com/your-username/JOB_PORTAL.git
+        (cd JOB-PORTAL)
 
 ---
 
