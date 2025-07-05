@@ -21,43 +21,45 @@ import JobPost from "./components/JobPost";
 import Applications from "./components/EmployerApplications";
 import MyApplications from "./components/JobSeekerApplications";
 import PrivateRoute from "./pages/PrivateRoute";
+import AuthorizeRoute from "./pages/AuthorizeRoute";
 
 const App = () => {
-
-
-  const checkAuthentication = useUserStore((state) => state.checkAuthentication);
+  const checkAuthentication = useUserStore(
+    (state) => state.checkAuthentication
+  );
   useEffect(() => {
     checkAuthentication();
   }, [checkAuthentication]);
 
   return (
     <>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route path="my-profile" element={<MyProfile />} />
-              <Route path="update-profile" element={<UpdateProfile />} />
-              <Route path="update-password" element={<UpdatePassword />} />
-              <Route path="my-jobs" element={<MyJobs />} />
-              <Route path="job-post" element={<JobPost />} />
-              <Route path="applications" element={<Applications />} />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="update-profile" element={<UpdateProfile />} />
+            <Route path="update-password" element={<UpdatePassword />} />
+            <Route element={<AuthorizeRoute userRole="Job Seeker" />}>
               <Route path="my-applications" element={<MyApplications />} />
             </Route>
+            <Route element={<AuthorizeRoute userRole="Employer" />}>
+              <Route path="job-post" element={<JobPost />} />
+              <Route path="applications" element={<Applications />} />
+              <Route path="my-jobs" element={<MyJobs />} />
+            </Route>
           </Route>
-          <Route
-            path="/post/application/:jobId"
-            element={<PostApplication />}
-          />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/job/:id" element={<ViewJob />} />
-        </Routes>
-        <Footer />
-        <ToastContainer position="top-right" theme="dark" />
+        </Route>
+        <Route path="/post/application/:jobId" element={<PostApplication />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/job/:id" element={<ViewJob />} />
+      </Routes>
+      <Footer />
+      <ToastContainer position="top-right" theme="dark" />
     </>
   );
 };
